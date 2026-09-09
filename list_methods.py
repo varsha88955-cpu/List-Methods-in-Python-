@@ -1,85 +1,81 @@
-# python list methods
+class ListProcessor:
 
-## 1. append() - add an item
+    def __init__(self, items):
+        self.items = items
 
-items = [10, 20, 30]
-items.append(40)
-print(items)
+    def add_item(self, item):
+        self.items.append(item)
 
-## 2. extend() - add multiple items
+    def extend_items(self, iterable):
+        self.items.extend(iterable)
 
-items = [10, 20, 30]
-items.extend([40, 50, 60])
-print(items)
+    def insert_at(self, index, item):
+        self.items.insert(index, item)
 
-## 3. insert() - insert an item at an index
+    def remove_item(self, item):
+        self.items.remove(item)
 
-items = [10, 20, 30]
-items.insert(1, 15)
-print(items)
+    def pop_last(self):
+        return self.items.pop()
 
-## 4. remove() - remove the first occurrence
+    def find_index(self, item):
+        if item in self.items:
+            return self.items.index(item)
+        return -1
 
-items = [10, 20, 30, 20]
-items.remove(20)
-print(items)
+    def count_occurrences(self, item):
+        return self.items.count(item)
 
-## 5. pop() - remove and return the last item
+    def sort_ascending(self):
+        self.items.sort()
 
-items = [10, 20, 30]
-removed_item = items.pop()
-print(items)
-print(removed_item)
+    def reverse_order(self):
+        self.items.reverse()
 
-## 6. index() - find the first occurrence
+    def clone(self):
+        return self.items.copy()
 
-items = [10, 20, 30, 20]
-index = items.index(20)
-print(index)
+    def clear_all(self):
+        self.items.clear()
 
-## 7. count() - count occurrences
 
-items = [10, 20, 20, 30, 20]
-count = items.count(20)
-print(count)
+items = [30, 10, 20, 20, 40]
 
-## 8. sort() - sort in ascending order
+processor = ListProcessor(items)
 
-items = [40, 10, 30, 20]
-items.sort()
-print(items)
+print("original list:", processor.items)
 
-## 9. reverse() - reverse the list
+processor.add_item(50)
+print("after add_item:", processor.items)
 
-items = [10, 20, 30, 40]
-items.reverse()
-print(items)
+processor.extend_items([60, 70])
+print("after extend_items:", processor.items)
 
-## 10. copy() - create a shallow copy
+processor.insert_at(1, 15)
+print("after insert_at:", processor.items)
 
-items = [10, 20, 30]
-copied_items = items.copy()
-print(copied_items)
+processor.remove_item(20)
+print("after remove_item:", processor.items)
 
-## 11. clear() - remove all items
+removed_item = processor.pop_last()
+print("popped item:", removed_item)
+print("after pop_last:", processor.items)
 
-items = [10, 20, 30]
-items.clear()
-print(items)
+print("index of 20:", processor.find_index(20))
 
-## 12. merge and deduplicate two lists
+print("count of 20:", processor.count_occurrences(20))
 
-list_a = [1, 2, 3, 2]
-list_b = [3, 4, 5, 4]
+processor.sort_ascending()
+print("after sort_ascending:", processor.items)
 
-merged_list = []
+processor.reverse_order()
+print("after reverse_order:", processor.items)
 
-for item in list_a:
-if item not in merged_list:
-merged_list.append(item)
+copied_list = processor.clone()
+print("cloned list:", copied_list)
 
-for item in list_b:
-if item not in merged_list:
+processor.clear_all()
+print("after clear_all:", processor.items)
 merged_list.append(item)
 
 print(merged_list)
